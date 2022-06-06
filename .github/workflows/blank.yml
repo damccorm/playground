@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: take the issue
-      uses: bdougie/take-action@main
+      uses: damccorm/take-and-close-action@main
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
-        trigger: .take-issue
+        take: .take-issue
+        close: .close-issue
