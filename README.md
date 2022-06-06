@@ -1,2 +1,2 @@
 # playground
-Playground for demonstrating things
+Playground for demonstrating thin gs
