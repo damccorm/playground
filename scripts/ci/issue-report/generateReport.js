@@ -86,4 +86,15 @@ async function generateReport() {
     sendReport(`Flaky test issue report (${flakyIssues.length})`, flakyHeader, flakyIssues); 
 }
 
+function validateEnvSet(envVar) {
+    if (!process.env[envVar]) {
+        throw new Error(`${envVar} environment variable not set.`)
+    }
+}
+
+validateEnvSet('ISSUE_REPORT_SENDER_EMAIL_SERVICE')
+validateEnvSet('ISSUE_REPORT_SENDER_EMAIL_ADDRESS')
+validateEnvSet('ISSUE_REPORT_SENDER_EMAIL_PASSWORD')
+validateEnvSet('ISSUE_REPORT_RECIPIENT_EMAIL_ADDRESS')
+
 generateReport();
