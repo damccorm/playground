@@ -14,8 +14,7 @@ jobs:
 #       with:
 #         take: .take-issue
 #         close: .close-issue
-    -
-      run: |
+    - run: |
         BODY="$(jq '.comment.body' $GITHUB_EVENT_PATH)"
         ISSUE_NUMBER="$(jq '.issue.number' $GITHUB_EVENT_PATH)"
         LOGIN="$(jq '.comment.user.login' $GITHUB_EVENT_PATH | tr -d \")"
