@@ -35,3 +35,4 @@ jobs:
       env:
         INPUT_TAKE: ".take-issue"
         INPUT_CLOSE: ".close-issue"
+        GITHUB_TOKEN: ${{ github.token }}
