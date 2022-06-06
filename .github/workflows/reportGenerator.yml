@@ -9,6 +9,7 @@ jobs:
     name: Generate issue report
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@latest
     - run: |
         npm install
         node generateReport.js
