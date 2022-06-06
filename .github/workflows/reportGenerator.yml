@@ -1,0 +1,20 @@
+name: Generate issue report
+on:
+  schedule:
+  - cron: "0 10 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  assign:
+    name: Generate issue report
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        npm install
+        node generateReport.js
+      working-directory: 'scripts/ci/issue/report'
+      env:
+        ISSUE_REPORT_SENDER_EMAIL_SERVICE: "gmail"
+        ISSUE_REPORT_SENDER_EMAIL_ADDRESS: ${{ secrets.ISSUE_REPORT_SENDER_EMAIL_ADDRESS }}
+        ISSUE_REPORT_SENDER_EMAIL_PASSWORD: ${{ secrets.ISSUE_REPORT_SENDER_EMAIL_PASSWORD }}
+        ISSUE_REPORT_RECIPIENT_EMAIL_ADDRESS: "dannymccormick@google.com"
