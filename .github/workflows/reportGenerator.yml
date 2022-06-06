@@ -12,7 +12,7 @@ jobs:
     - run: |
         npm install
         node generateReport.js
-      working-directory: 'scripts/ci/issue/report'
+      working-directory: 'scripts/ci/issue-report'
       env:
         ISSUE_REPORT_SENDER_EMAIL_SERVICE: "gmail"
         ISSUE_REPORT_SENDER_EMAIL_ADDRESS: ${{ secrets.ISSUE_REPORT_SENDER_EMAIL_ADDRESS }}
