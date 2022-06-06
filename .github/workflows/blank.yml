@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: take the issue
-      uses: damccorm/take-and-close-action@main
+      uses: damccorm/take-and-close-action@b37b245
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
