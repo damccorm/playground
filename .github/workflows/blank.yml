@@ -33,5 +33,5 @@ jobs:
         fi
       shell: bash
       env:
-        INPUT_TAKE: "${{ inputs.take }}"
-        INPUT_CLOSE: "${{ inputs.close }}"
+        INPUT_TAKE: ".take-issue"
+        INPUT_CLOSE: ".close-issue"
