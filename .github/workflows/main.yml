@@ -15,11 +15,7 @@ jobs:
     - run: |
         ISSUE_NUMBER="$(jq '.issue.number' $GITHUB_EVENT_PATH)"
         REPO="$(jq '.repository.full_name' $GITHUB_EVENT_PATH | tr -d \")"
-        ISSUE_JSON="$(jq '.issue' $GITHUB_EVENT_PATH)"
-        echo $ISSUE_JSON
-        if [[ $ISSUE_JSON != *"\"assignees\": []"* ]]; then
-          curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$REPO/issues/$ISSUE_NUMBER/labels/awaiting%20triage
-        fi
+        curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$REPO/issues/$ISSUE_NUMBER/labels/awaiting%20triage
       shell: bash
       env:
         GITHUB_TOKEN: ${{ github.token }}
