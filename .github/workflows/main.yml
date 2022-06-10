@@ -5,7 +5,7 @@ name: CI
 # Controls when the workflow will run
 on:
   issues:
-    types: [opened, assigned]
+    types: [assigned]
 
 jobs:
   assign:
