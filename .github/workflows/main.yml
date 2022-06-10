@@ -1,0 +1,26 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  issues:
+  - opened
+  - assigned
+
+jobs:
+  assign:
+    name: Take an issue
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        ISSUE_NUMBER="$(jq '.issue.number' $GITHUB_EVENT_PATH)"
+        REPO="$(jq '.repository.full_name' $GITHUB_EVENT_PATH | tr -d \")"
+        ISSUE_JSON="$(jq '.issue' $GITHUB_EVENT_PATH)"
+        echo $ISSUE_JSON
+        if [[ $ISSUE_JSON == *"$INPUT_TAKE"* && $ISSUE_JSON != *"\`$INPUT_TAKE\`"* ]]; then
+          curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$REPO/issues/$ISSUE_NUMBER/labels/awaiting%20triage
+        fi
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
