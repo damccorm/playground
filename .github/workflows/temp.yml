@@ -13,6 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
+      - run: if test $weekday == "Thursday"; then echo "IS_FRIDAY=true" >> $GITHUB_ENV; fi
 
       - name: Run a one-line script
-        run: echo ${{ github.event.repository.updated_at}}
+        run: printenv
+        env:
+          TEST: ${{ env.IS_FRIDAY }}
+
