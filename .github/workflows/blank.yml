@@ -21,18 +21,25 @@ jobs:
                 repo: context.repo.repo,
                 assignees: [context.payload.comment.user.login]
               });
+              github.rest.issues.removeLabel({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: 'awaiting triage'
+              });
             } else if (bodyString == '.close-issue') {
-              state_reason = 'fixed'
+              console.log('Closing issue');
+              let state_reason = 'fixed'
               if (i + 1 < body.length && body[i+1].toLowerCase() == 'not_planned') {
                 state_reason = 'not_planned';
               }
-              console.log('Closing issue');
+              
               github.rest.issues.update({
                 issue_number: context.issue.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                state: 'closed'
-                state_reason: state_reason
+                state: 'closed',
+                state_reason: 'not_planned'
               });
             } else if (bodyString == '.set-labels' || bodyString == '.add-labels' || bodyString == '.remove-labels') {
               console.log('Updating labels');
