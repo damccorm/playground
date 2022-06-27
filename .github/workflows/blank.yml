@@ -57,7 +57,7 @@ jobs:
                   }
                   partsToConsider += ' ' + body[j];
                 }
-                const labelsToActionOn = partsToConsider.split(',');
+                const labelsToActionOn = partsToConsider.split(',').map(l => l.replaceAll('\'', ''));
                 for (label of labelsToActionOn) {
                   if (labelsInRepo.indexOf(label) < 0) {
                     github.rest.issues.createComment({
