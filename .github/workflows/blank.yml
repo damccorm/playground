@@ -32,7 +32,7 @@ jobs:
               let state = 'closed';
               if (i+1 < body.length && body[i+1] == 'not_planned') {
                 // Octokit doesn't support close reason, so this must be a custom request
-                await github.request(`PATCH /repos/{owner}/{repo}/issues/{/issue_number}`, {
+                await github.request(`PATCH /repos/{owner}/{repo}/issues/{issue_number}`, {
                   issue_number: context.issue.number,
                   owner: context.repo.owner,
                   repo: context.repo.repo,
