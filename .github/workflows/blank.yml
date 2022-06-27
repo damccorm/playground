@@ -30,7 +30,7 @@ jobs:
               });
             } else if (bodyString == '.set-labels' || bodyString == '.add-labels' || bodyString == '.remove-labels') {
               if (i + 1 >= body.length) {
-                github.rest.issues.addComment({
+                github.rest.issues.createComment({
                   issue_number: context.issue.number,
                   owner: context.repo.owner,
                   repo: context.repo.repo,
@@ -45,7 +45,7 @@ jobs:
                 const labelsToActionOn = body[i+1].split(',');
                 for (label of labelsToActionOn) {
                   if (labelsInRepo.indexOf(label) < 0) {
-                    github.rest.issues.addComment({
+                    github.rest.issues.createComment({
                       issue_number: context.issue.number,
                       owner: context.repo.owner,
                       repo: context.repo.repo,
