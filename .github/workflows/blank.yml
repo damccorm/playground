@@ -10,6 +10,7 @@ jobs:
     - uses: actions/github-script@v6
       with:
         script: |
+          console.log(context)
           const body = context.comment.body.split(' ');
           for (let i = 0; i < body.length; i++) {
             const bodyString = body[i].toLowerCase();
