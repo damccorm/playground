@@ -42,7 +42,22 @@ jobs:
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                 })).map(l => l.name);
-                const labelsToActionOn = body[i+1].split(',');
+                let j = i+1;
+                let partsToConsider = body[j];
+                while ((partsToConsider.match(/'/g) || []).length % 2 == 1) {
+                  j++;
+                  if (j >= body.length) {
+                    github.rest.issues.createComment({
+                      issue_number: context.issue.number,
+                      owner: context.repo.owner,
+                      repo: context.repo.repo,
+                      body: '.<update>-labels command detected with mismatched set of `' quotes'
+                    });
+                    return;
+                  }
+                  partsToConsider += ' ' + body[j];
+                }
+                const labelsToActionOn = partsToConsider.split(',');
                 for (label of labelsToActionOn) {
                   if (labelsInRepo.indexOf(label) < 0) {
                     github.rest.issues.createComment({
