@@ -29,7 +29,7 @@ jobs:
               });
             } else if (bodyString == '.close-issue') {
               console.log('Closing issue');
-              let state_reason = 'fixed'
+              let state_reason = ''
               if (i + 1 < body.length && body[i+1].toLowerCase() == 'not_planned') {
                 state_reason = 'not_planned';
               }
