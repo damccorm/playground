@@ -9,9 +9,6 @@ jobs:
     steps:
     - uses: actions/github-script@v6
       with:
-        steps:
-    - uses: actions/github-script@v6
-      with:
         script: |
           const body = context.payload.comment.body.split(' ');
           for (let i = 0; i < body.length; i++) {
