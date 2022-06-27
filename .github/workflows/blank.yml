@@ -38,10 +38,10 @@ jobs:
                 });
                 return;
               } else {
-                const labelsInRepo = await github.paginate(github.rest.issues.listLabelsForRepo, {
+                const labelsInRepo = (await github.paginate(github.rest.issues.listLabelsForRepo, {
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                }).map(l => l.name);
+                })).map(l => l.name);
                 const labelsToActionOn = body[i+1].split(',');
                 for (label of labelsToActionOn) {
                   if (labelsInRepo.indexOf(label) < 0) {
