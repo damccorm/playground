@@ -11,7 +11,7 @@ jobs:
       with:
         script: |
           console.log(context)
-          const body = context.comment.body.split(' ');
+          const body = context.payload.comment.body.split(' ');
           for (let i = 0; i < body.length; i++) {
             const bodyString = body[i].toLowerCase();
             if (bodyString == '.take-issue') {
