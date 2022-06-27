@@ -22,6 +22,7 @@ jobs:
                 assignees: [context.payload.comment.user.login]
               });
             } else if (bodyString == '.close-issue') {
+              state_reason = 'fixed'
               if (i + 1 < body.length && body[i+1].toLowerCase() == 'not_planned') {
                 state_reason = 'not_planned';
               }
@@ -31,7 +32,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 state: 'closed'
-                state_reason: state_reason || undefined
+                state_reason: state_reason
               });
             } else if (bodyString == '.set-labels' || bodyString == '.add-labels' || bodyString == '.remove-labels') {
               console.log('Updating labels');
