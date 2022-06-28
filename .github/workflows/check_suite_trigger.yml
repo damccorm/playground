@@ -1,0 +1,12 @@
+name: Check suite trigger
+
+on:
+  check_suite:
+    types:
+    - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo test!
