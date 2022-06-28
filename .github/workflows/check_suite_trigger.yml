@@ -1,7 +1,7 @@
 name: Check suite trigger
 
 on:
-  check_suite:
+  check_run:
     types:
     - completed
 
