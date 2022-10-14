@@ -9,7 +9,7 @@ on:
 
 jobs:
   assign:
-    if: issue.state_reason == 'completed'
+    if: issues.issue.state_reason == 'completed'
     name: Take an issue
     runs-on: ubuntu-latest
     steps:
