@@ -12,8 +12,7 @@ jobs:
     name: Take an issue
     runs-on: ubuntu-latest
     steps:
-    - name: Payload Info
-      uses: Dovyski/payload-info-action@v1
+    - uses: hmarr/debug-action@v2
     - uses: actions/github-script@v6
       with:
         script: |
