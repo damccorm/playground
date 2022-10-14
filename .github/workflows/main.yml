@@ -5,17 +5,22 @@ name: CI
 # Controls when the workflow will run
 on:
   issues:
-    types: [assigned]
+    types: [assigned, closed]
 
 jobs:
   assign:
     name: Take an issue
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        ISSUE_NUMBER="$(jq '.issue.number' $GITHUB_EVENT_PATH)"
-        REPO="$(jq '.repository.full_name' $GITHUB_EVENT_PATH | tr -d \")"
-        curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$REPO/issues/$ISSUE_NUMBER/labels/awaiting%20triage
-      shell: bash
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+    - uses: actions/github-script@v6
+      with:
+        script: |
+          console.log(github.context)
+    
+#     - run: |
+#         ISSUE_NUMBER="$(jq '.issue.number' $GITHUB_EVENT_PATH)"
+#         REPO="$(jq '.repository.full_name' $GITHUB_EVENT_PATH | tr -d \")"
+#         curl -X DELETE -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$REPO/issues/$ISSUE_NUMBER/labels/awaiting%20triage
+#       shell: bash
+#       env:
+#         GITHUB_TOKEN: ${{ github.token }}
