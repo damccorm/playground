@@ -13,5 +13,5 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
           repositories: 'apache/beam'
-          period: 90
+          period: 30
           charts: true
