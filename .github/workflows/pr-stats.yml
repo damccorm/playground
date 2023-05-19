@@ -15,17 +15,3 @@ jobs:
           repositories: 'apache/beam'
           period: 90
           charts: 'true'
-      - name: Recap changes
-        uses: flowwer-dev/pull-request-stats@master
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          repositories: 'apache/beam'
-          period: 60
-          charts: 'true'
-      - name: Recap changes
-        uses: flowwer-dev/pull-request-stats@master
-        with:
-          token: ${{ secrets.GH_TOKEN }}
-          repositories: 'apache/beam'
-          period: 30
-          charts: 'true'
