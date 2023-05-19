@@ -1,0 +1,17 @@
+name: Pull Request Stats
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  recap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Recap changes
+        uses: flowwer-dev/pull-request-stats@master
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          repositories: 'apache/beam'
+          period: 90
+          charts: true
