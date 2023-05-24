@@ -10,13 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Recap changes
-        uses: damccorm/pull-request-stats@master
+        id: pr-stats
+        uses: damccorm/pull-request-stats@users/damccorm/setOutput
         with:
           token: ${{ secrets.GH_TOKEN }}
           repositories: 'apache/beam'
           period: 90
           charts: 'true'
-        env:
-          GITHUB_STEP_SUMMARY: 'summary.txt'
-      - run: echo $GITHUB_STEP_SUMMARY
-      - run: ls /home/runner/work/_temp/_runner_file_commands
+      - run: echo ${{steps.pr-stats.outputs.results}}
