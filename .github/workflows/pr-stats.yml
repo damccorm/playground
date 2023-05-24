@@ -18,4 +18,4 @@ jobs:
           charts: 'true'
         env:
           GITHUB_STEP_SUMMARY: 'summary.txt'
-      - run: cat summary.txt
+      - run: echo $GITHUB_STEP_SUMMARY
