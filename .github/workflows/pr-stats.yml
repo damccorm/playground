@@ -19,4 +19,4 @@ jobs:
           charts: 'true'
       - uses: actions/github-script@v6
         with:
-          script: core.info(${{steps.pr-stats.outputs.results}})
+          script: core.info('${{steps.pr-stats.outputs.results}}')
