@@ -16,3 +16,6 @@ jobs:
           repositories: 'apache/beam'
           period: 90
           charts: 'true'
+        env:
+          GITHUB_STEP_SUMMARY: 'summary.txt'
+      - run: cat summary.txt
