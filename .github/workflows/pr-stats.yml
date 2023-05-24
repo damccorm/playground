@@ -17,6 +17,5 @@ jobs:
           repositories: 'apache/beam'
           period: 90
           charts: 'true'
-      - uses: actions/github-script@v6
-        with:
-          script: core.info('${{steps.pr-stats.outputs.results}}')
+          local-file: 'result.txt'
+      - run: cat result.txt
