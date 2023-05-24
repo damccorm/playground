@@ -19,3 +19,4 @@ jobs:
         env:
           GITHUB_STEP_SUMMARY: 'summary.txt'
       - run: echo $GITHUB_STEP_SUMMARY
+      - run: ls /home/runner/work/_temp/_runner_file_commands
