@@ -14,7 +14,7 @@ function sendReport(title, report) {
         from: process.env['ISSUE_REPORT_SENDER_EMAIL_ADDRESS'],
         to: process.env['ISSUE_REPORT_RECIPIENT_EMAIL_ADDRESS'],
         subject: title,
-        text: report
+        html: report
     }, function(error, info){
         if (error) {
             throw new Error(`Failed to send email with error: ${error}`);
