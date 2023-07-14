@@ -17,4 +17,8 @@ jobs:
           repositories: 'apache/beam'
           period: 90
           charts: 'true'
-      - run: echo ${{ steps.pr-stats.outputs.results }}
+      - uses: actions/github-script@master
+        with:
+          script: |
+            let test = String.raw`${{ steps.pr-stats.outputs.results }}`
+            console.log(test
