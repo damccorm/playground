@@ -26,7 +26,7 @@ jobs:
             fs.writeFileSync('results.txt', test)
       - run: |
           npm ci
-          sendPrStats.js
+          node sendPrStats.js
         working-directory: 'sendPrStats'
         env:
           ISSUE_REPORT_SENDER_EMAIL_SERVICE: "gmail"
