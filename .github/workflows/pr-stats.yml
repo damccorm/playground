@@ -24,7 +24,7 @@ jobs:
             const fs = require('fs')
             let test = String.raw`${{ steps.pr-stats.outputs.results }}`
             console.log(test)
-            fs.writeFileSync('results.txt', test)
+            fs.writeFileSync('sendPrStats/results.txt', test)
       - run: |
           npm ci
           node sendPrStats.js
