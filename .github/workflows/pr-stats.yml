@@ -22,3 +22,13 @@ jobs:
           script: |
             let test = String.raw`${{ steps.pr-stats.outputs.results }}`
             console.log(test)
+            fs.writeFileSync('results.txt', test)
+      - run: |
+          npm ci
+          sendPrStats.js
+      working-directory: 'sendPrStats'
+      env:
+        ISSUE_REPORT_SENDER_EMAIL_SERVICE: "gmail"
+        ISSUE_REPORT_SENDER_EMAIL_ADDRESS: ${{ secrets.ISSUE_REPORT_SENDER_EMAIL_ADDRESS }}
+        ISSUE_REPORT_SENDER_EMAIL_PASSWORD: ${{ secrets.ISSUE_REPORT_SENDER_EMAIL_PASSWORD }}
+        ISSUE_REPORT_RECIPIENT_EMAIL_ADDRESS: ${{ secrets.ISSUE_REPORT_RECEIVER_EMAIL_ADDRESS }}
