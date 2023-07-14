@@ -17,4 +17,4 @@ jobs:
           repositories: 'apache/beam'
           period: 90
           charts: 'true'
-      - run: echo ${{ steps.pr-stats.outputs.result }}
+      - run: echo ${{ steps.pr-stats.outputs.results }}
