@@ -9,6 +9,7 @@ jobs:
   recap:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Recap changes
         id: pr-stats
         uses: damccorm/pull-request-stats@master
