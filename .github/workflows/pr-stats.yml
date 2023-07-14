@@ -20,6 +20,7 @@ jobs:
       - uses: actions/github-script@master
         with:
           script: |
+            const fs = require('fs')
             let test = String.raw`${{ steps.pr-stats.outputs.results }}`
             console.log(test)
             fs.writeFileSync('results.txt', test)
