@@ -21,4 +21,4 @@ jobs:
         with:
           script: |
             let test = String.raw`${{ steps.pr-stats.outputs.results }}`
-            console.log(test
+            console.log(test)
