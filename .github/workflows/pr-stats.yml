@@ -11,11 +11,10 @@ jobs:
     steps:
       - name: Recap changes
         id: pr-stats
-        uses: damccorm/pull-request-stats@users/damccorm/setOutput
+        uses: damccorm/pull-request-stats@master
         with:
           token: ${{ secrets.GH_TOKEN }}
           repositories: 'apache/beam'
           period: 90
           charts: 'true'
-          local-file: 'result.txt'
-      - run: cat result.txt
+      - run: echo ${{ steps.pr-stats.outputs.result }}
