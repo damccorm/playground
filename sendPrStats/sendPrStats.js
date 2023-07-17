@@ -52,6 +52,6 @@ validateEnvSet('ISSUE_REPORT_SENDER_EMAIL_ADDRESS')
 validateEnvSet('ISSUE_REPORT_SENDER_EMAIL_PASSWORD')
 validateEnvSet('ISSUE_REPORT_RECIPIENT_EMAIL_ADDRESS')
 
-contents = fs.readFileSync('results.txt');
+contents = fs.readFileSync('results.txt', 'utf-8');
 
 sendReport('pr stats', formatReport(contents));
