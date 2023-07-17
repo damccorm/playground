@@ -24,6 +24,23 @@ function sendReport(title, report) {
     });
 }
 
+function formatReport(contents) {
+    linkIndex = contents.indexOf('(https://app.flowwer.dev');
+    while (linkIndex != -1) {
+        endIndex = contents.indexOf('<br/>', linkIndex) + 4;
+        link = contents.substring(linkIndex, endIndex+5);
+        contents = contents.replace(link, '');
+
+        linkIndex = contents.indexOf('(https://app.flowwer.dev');
+    }
+    
+    while (contents.indexOf('<br/>') > -1) {
+        contents = contents.replace('<br/>', '')
+    }
+
+    return contents;
+}
+
 function validateEnvSet(envVar) {
     if (!process.env[envVar]) {
         throw new Error(`${envVar} environment variable not set.`)
@@ -37,4 +54,4 @@ validateEnvSet('ISSUE_REPORT_RECIPIENT_EMAIL_ADDRESS')
 
 contents = fs.readFileSync('results.txt');
 
-sendReport('pr stats', contents);
+sendReport('pr stats', formatReport(contents));
