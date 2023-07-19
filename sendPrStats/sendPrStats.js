@@ -60,6 +60,7 @@ function formatReport(contents) {
     splitContents[1] = '';
     let paddingLength = 16;
     splitContents[2] = '|   | User | Total reviews | Time to review | Total comments |';
+    splitContents.splice(3);
     for (let i = 2; i < splitContents.length; i++) {
         let line = splitContents[i];
         let splitLine = line.split('|');
