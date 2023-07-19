@@ -60,7 +60,7 @@ function formatReport(contents) {
     splitContents[1] = '<br/><br/><table>';
     splitContents[2] = '<tr><th>Reviewer</th><th>Username</th><th>Total reviews</th><th>Time to review<th></th><th>Total comments</th></tr>';
     splitContents.splice(3,1);
-    for (let i = 2; i < splitContents.length; i++) {
+    for (let i = 3; i < splitContents.length; i++) {
         console.log('Processing' + splitContents[i]);
         let line = splitContents[i];
         let splitLine = line.split('|');
