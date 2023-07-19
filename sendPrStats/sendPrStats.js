@@ -69,6 +69,8 @@ function formatReport(contents) {
 
     contents = splitContents.join('') + '</table>';
 
+    console.log(contents);
+
     return contents;
 }
 
