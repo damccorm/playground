@@ -35,8 +35,22 @@ function formatReport(contents) {
     }
     
     while (contents.indexOf('<br/>') > -1) {
-        contents = contents.replace('<br/>', '')
+        contents = contents.replace('<br/>', '');
     }
+    
+    while (contents.indexOf('▀') > -1) {
+        contents = contents.replace('▀', '');
+    }
+    
+    while (contents.indexOf('**') > -1) {
+        contents = contents.replace('**', '');
+    }
+
+    while (contents.indexOf('\n') > -1) {
+        contents = contents.replace('\n', '<br/>');
+    }
+
+    contents.replace('[beam](https://github.com/apache/beam)', 'the apache beam repo. Generated from https://github.com/flowwer-dev/pull-request-stats:<br/><br/>');
 
     return contents;
 }
