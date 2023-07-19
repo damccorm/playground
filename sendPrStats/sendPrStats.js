@@ -58,7 +58,7 @@ function formatReport(contents) {
 
     splitContents[0] = 'PR review stats for the last 90 days of the apache beam repo. Generated from https://github.com/flowwer-dev/pull-request-stats:';
     splitContents[1] = '<br/><br/><table>';
-    splitContents[2] = '<tr><th>  </th><th>User</th><th>Total reviews</th><th>Time to review<th></th><th>Total comments</th></tr>';
+    splitContents[2] = '<tr><th>Reviewer</th><th>Username</th><th>Total reviews</th><th>Time to review<th></th><th>Total comments</th></tr>';
     splitContents.splice(3,1);
     for (let i = 2; i < splitContents.length; i++) {
         console.log('Processing' + splitContents[i]);
