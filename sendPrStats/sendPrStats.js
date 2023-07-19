@@ -64,6 +64,7 @@ function formatReport(contents) {
         console.log('Processing' + splitContents[i]);
         let line = splitContents[i];
         let splitLine = line.split('|');
+        splitLine.splice(0, 1) // Remove blank first entry
         splitContents[i] = `<tr><th>${splitLine.join('</th><th>')}</th></tr>`
     }
 
