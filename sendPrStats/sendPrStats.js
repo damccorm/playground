@@ -45,12 +45,34 @@ function formatReport(contents) {
     while (contents.indexOf('**') > -1) {
         contents = contents.replace('**', '');
     }
-
-    while (contents.indexOf('\n') > -1) {
-        contents = contents.replace('\n', '<br/>');
+    
+    while (contents.indexOf('[') > -1) {
+        contents = contents.replace('[', '');
+    }
+    
+    while (contents.indexOf(']') > -1) {
+        contents = contents.replace(']', '');
     }
 
-    contents.replace('[beam](https://github.com/apache/beam)', 'the apache beam repo. Generated from https://github.com/flowwer-dev/pull-request-stats:<br/><br/>');
+    splitContents = contents.split('\n');
+
+    splitContents[0] = 'PR review stats for the last 90 days of the apache beam repo. Generated from https://github.com/flowwer-dev/pull-request-stats:';
+    splitContents[1] = '';
+    let paddingLength = 16;
+    splitContents[2] = '|   | User | Total reviews | Time to review | Total comments |';
+    for (let i = 2; i < splitContents.length; i++) {
+        let line = splitContents[i];
+        let splitLine = line.split('|');
+        for (let j = 1; j < splitLine.length; j++) {
+            while (splitLine[j].length < paddingLength) {
+                splitLine[j] += ' ';
+            }
+        }
+
+        splitContents[i] = splitLine.join('|');
+    }
+
+    contents = splitContents.join('<br/>');
 
     return contents;
 }
