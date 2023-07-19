@@ -57,23 +57,17 @@ function formatReport(contents) {
     splitContents = contents.split('\n');
 
     splitContents[0] = 'PR review stats for the last 90 days of the apache beam repo. Generated from https://github.com/flowwer-dev/pull-request-stats:';
-    splitContents[1] = '';
+    splitContents[1] = '<br/><br/>';
     let paddingLength = 16;
-    splitContents[2] = '|   | User | Total reviews | Time to review | Total comments |';
+    splitContents[2] = '<table><tr><th></th><th>User</th><th>Total reviews</th><th>Time to review<th></th>Total comments</th></tr>';
     splitContents.splice(3);
     for (let i = 2; i < splitContents.length; i++) {
         let line = splitContents[i];
         let splitLine = line.split('|');
-        for (let j = 1; j < splitLine.length; j++) {
-            while (splitLine[j].length < paddingLength) {
-                splitLine[j] += ' ';
-            }
-        }
-
-        splitContents[i] = splitLine.join('|');
+        splitContents[i] = `<tr><th>${splitLine.join('</th><th>')}</th></tr>`
     }
 
-    contents = splitContents.join('<br/>');
+    contents = splitContents.join('') + '</table>';
 
     return contents;
 }
