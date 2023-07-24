@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Recap changes
         id: pr-stats
-        uses: damccorm/pull-request-stats@master
+        uses: flowwer-dev/pull-request-stats@126f3be1231eaf2caa433f8c93a4a79150c8a581
         with:
           token: ${{ secrets.GH_TOKEN }}
           repositories: 'apache/beam'
@@ -22,9 +22,9 @@ jobs:
         with:
           script: |
             const fs = require('fs')
-            let test = String.raw`${{ steps.pr-stats.outputs.results }}`
-            console.log(test)
-            fs.writeFileSync('sendPrStats/results.txt', test)
+            let results = String.raw`${{ steps.pr-stats.outputs.resultsMd }}`
+            console.log(results)
+            fs.writeFileSync('sendPrStats/results.txt', results)
       - run: |
           npm ci
           node sendPrStats.js
