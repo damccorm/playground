@@ -6,12 +6,20 @@ on:
   pull_request:
     branches: [ "main" ]
   issue_comment:
+  schedule:
+  - cron: "* * * * 1-5"
 
   workflow_dispatch:
+
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.event.schedule || github.head_ref || github.ref }}'
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: crazy-max/ghaction-dump-context@v1
+      - run: sleep 3000
 
