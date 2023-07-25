@@ -8,8 +8,6 @@ on:
   issue_comment:
 
   workflow_dispatch:
-  schedule:
-  - cron: "* * * * 1-5"
 
 jobs:
   build:
