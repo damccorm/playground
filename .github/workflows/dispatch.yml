@@ -17,6 +17,6 @@ jobs:
         run: |
           APACHE_PASS=$(cat $GITHUB_EVENT_PATH | jq '.inputs.APACHE_PASSWORD' | sed 's/"//g' )
           echo "::add-mask::$MY_SECRET"
-          cat $GITHUB_EVENT_PATH
+          cat $(cat $GITHUB_EVENT_PATH | jq '.inputs.APACHE_PASSWORD' )
       - run: echo ${{ github.event.inputs.APACHE_PASSWORD }}
       
