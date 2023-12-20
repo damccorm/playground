@@ -15,8 +15,8 @@ jobs:
     steps:
       - name: Validate and mask apache id/password
         run: |
-          APACHE_PASS=$(cat $GITHUB_EVENT_PATH | jq '.inputs.APACHE_PASSWORD' | sed 's/"//g' )
+          APACHE_PASS=$(jq -r '.inputs.secret' $GITHUB_EVENT_PATH)
           echo "::add-mask::$MY_SECRET"
-          echo $(cat $GITHUB_EVENT_PATH | jq '.inputs.APACHE_PASSWORD' )
+          echo $APACHE_PASS
       - run: echo ${{ github.event.inputs.APACHE_PASSWORD }}
       
