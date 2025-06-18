@@ -30,7 +30,7 @@ jobs:
     - run: echo 'test'
 
   job_3:
-    if: always()
+    if: always() && ${{ github.event.inputs.RUN_JOB_3 == 'yes'}}
     needs: [job_1]
     runs-on: ubuntu-latest
     steps:
