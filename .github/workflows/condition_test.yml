@@ -17,20 +17,20 @@ on:
 
 jobs:
   job_1:
-    if: ${{ fromJson(github.event.inputs.STAGE).RUN_JOB_1 == 'yes'}}
+    if: ${{ github.event.inputs.RUN_JOB_1 == 'yes'}}
     runs-on: ubuntu-latest
     steps:
     - run: echo 'test'
 
   job_2:
-    if: ${{ fromJson(github.event.inputs.STAGE).RUN_JOB_2 == 'yes'}}
+    if: ${{ github.event.inputs.RUN_JOB_2 == 'yes'}}
     needs: [job_1]
     runs-on: ubuntu-latest
     steps:
     - run: echo 'test'
 
   job_3:
-    if: always() && ${{ fromJson(github.event.inputs.STAGE).RUN_JOB_3 == 'yes'}}
+    if: always() && ${{ github.event.inputs.RUN_JOB_3 == 'yes'}}
     needs: [job_1]
     runs-on: ubuntu-latest
     steps:
