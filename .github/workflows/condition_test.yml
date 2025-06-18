@@ -34,4 +34,4 @@ jobs:
     needs: [job_1]
     runs-on: ubuntu-latest
     steps:
-    - run: echo "${{ github.event.inputs}"
+    - run: echo "${{ github.event.inputs}}"
