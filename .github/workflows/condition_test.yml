@@ -1,0 +1,37 @@
+name: condition_test
+on:
+  workflow_dispatch:
+    inputs:
+      RUN_JOB_1:
+        description: "Whether to run job 1"
+        required: true
+        default: 'no'
+      RUN_JOB_2:
+        description: "Whether to run job 2 (depends on job 1, no always())"
+        required: true
+        default: 'no'
+      RUN_JOB_3:
+        description: "Whether to run job 3 (depends on job 1, with an always())"
+        required: true
+        default: 'no'
+
+jobs:
+  job_1:
+    if: ${{ fromJson(github.event.inputs.STAGE).RUN_JOB_1 == 'yes'}}
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo 'test'
+
+  job_2:
+    if: ${{ fromJson(github.event.inputs.STAGE).RUN_JOB_2 == 'yes'}}
+    needs: [job_1]
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo 'test'
+
+  job_3:
+    if: always() && ${{ fromJson(github.event.inputs.STAGE).RUN_JOB_3 == 'yes'}}
+    needs: [job_1]
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo 'test'
